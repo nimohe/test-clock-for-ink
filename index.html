@@ -1,17 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Simple Clock by Nimo.He</title>
-    <!-- <title>Vite App</title> -->
-    <script type="module" crossorigin src="/assets/index.cd30d577.js"></script>
-    <link rel="stylesheet" href="/assets/index.1f1a6388.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    
-  </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script src="assets/js/moment.min.js"></script>
+    <style>
+        #app {
+            height: 100%;
+            /* background-color: rgb(224, 131, 55); */
+        }
+        
+        .description {
+            display: block;
+            font-family: "clockicons", Helvetica, Arial;
+            font-size: 220px;
+        }
+
+        #year {
+            display: block;
+            margin: 0 auto;
+            font-family: sans-serif;
+        }
+
+        #year div {
+            font-size: 40px;
+            margin-top: 20px;
+            /* margin-top: -180px; */
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="time">
+            <span class="description center">00:00</span>
+        </div>
+        <div id="year">
+            <div class="center description">2022.11.28</div>
+        </div>
+        <!-- <div class="box" style="display: block;">
+            <h2>2022-11-28</h2>
+        </div> -->
+    </div>
+    <script>
+        window.onload=function(){
+            let timeEle=document.querySelector('#time').children[0];
+            let time=moment().format('HH:mm'); 
+            timeEle.innerHTML=time;
+
+            let yearEle=document.querySelector('#year').children[0];
+            let year=moment().format('YYYY.MM.DD'); 
+            yearEle.innerHTML=year;
+
+            console.log('233',moment(),moment().format('YYYY.MM.DD'));
+            setInterval(()=>{
+                time=moment().format('HH:mm'); 
+                timeEle.innerHTML=time;
+                
+                year=moment().format('YYYY.MM.DD');
+                if(year!=='2022.11.28'){
+                    yearEle.innerHTML=year;
+                }
+            },1000)
+        }
+    </script>
+</body>
+
 </html>

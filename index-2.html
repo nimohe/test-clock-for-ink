@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+    <script src="assets/js/moment.min.js"></script>
+    <style>
+        #app {
+            width: 100vw;
+            height: 100vh;
+            /* border: 1px solid red; */
+            /* background-color: rgb(224, 131, 55); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .description {
+            display: block;
+            font-family: "clockicons", Helvetica, Arial;
+            font-size: 220px;
+        }
+
+        #year {
+            display: block;
+            margin: 0 auto;
+            /* font-family: sans-serif; */
+            font-size: 40px;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div id="app">
+        <div id="time">
+            <span class="description center">00:00</span>
+        </div>
+        <div id="year">
+            <div class="center description">2022.11.28</div>
+        </div>
+    </div> -->
+
+    <div id="app" class="fullscreenDiv">
+        <div class="centerDiv">
+            <span id="time" class="description center">00:00</span>
+            <span id="year" class="description center">2022.11.28</span>
+        </div>
+    </div>
+    <script>
+        window.onload=function(){
+            // return;
+            let timeEle=document.querySelector('#time');
+            let time=moment().format('HH:mm'); 
+            timeEle.innerHTML=time;
+
+            let yearEle=document.querySelector('#year');
+            let year=moment().format('YYYY.MM.DD'); 
+            yearEle.innerHTML=year;
+
+            console.log('233',moment(),moment().format('YYYY.MM.DD'));
+            setInterval(()=>{
+                time=moment().format('HH:mm'); 
+                timeEle.innerHTML=time;
+                
+                year=moment().format('YYYY.MM.DD');
+                if(year!=='2022.11.28'){
+                    yearEle.innerHTML=year;
+                }
+            },1000)
+        }
+    </script>
+</body>
+
+</html>

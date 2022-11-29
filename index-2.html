@@ -18,9 +18,9 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .description {
-            display: block;
+            /* display: block; */
             font-family: "clockicons", Helvetica, Arial;
             font-size: 220px;
         }
@@ -30,6 +30,14 @@
             margin: 0 auto;
             /* font-family: sans-serif; */
             font-size: 40px;
+            float: right;
+        }
+
+        #week {
+            float: left;
+            font-size: Helvetica, Arial;
+            font-size: 30px;
+            font-weight: 400;
         }
 
         .center {
@@ -50,31 +58,51 @@
 
     <div id="app" class="fullscreenDiv">
         <div class="centerDiv">
-            <span id="time" class="description center">00:00</span>
-            <span id="year" class="description center">2022.11.28</span>
+            <span id="time" class="description center">20:01</span>
+            <div>
+                <span id="year" class="description center">2022.11.28</span>
+                <!-- <span style="clear:both;"></span> -->
+                <span id="week" class="center">星期一</span>
+            </div>
         </div>
     </div>
     <script>
-        window.onload=function(){
+        window.onload = function () {
             // return;
-            let timeEle=document.querySelector('#time');
-            let time=moment().format('HH:mm'); 
-            timeEle.innerHTML=time;
+            let timeEle = document.querySelector('#time');
+            let time = moment().format('HH:mm');
+            timeEle.innerHTML = time;
 
-            let yearEle=document.querySelector('#year');
-            let year=moment().format('YYYY.MM.DD'); 
-            yearEle.innerHTML=year;
+            let yearEle = document.querySelector('#year');
+            let year = moment().format('YYYY.MM.DD');
+            yearEle.innerHTML = year;
 
-            console.log('233',moment(),moment().format('YYYY.MM.DD'));
-            setInterval(()=>{
-                time=moment().format('HH:mm'); 
-                timeEle.innerHTML=time;
-                
-                year=moment().format('YYYY.MM.DD');
-                if(year!=='2022.11.28'){
-                    yearEle.innerHTML=year;
+            const WEEK_NAME =
+                ['日',
+                    '一',
+                    '二',
+                    '三',
+                    '四',
+                    '五',
+                    '六'];
+            let weekEle=document.querySelector('#week');
+            let day = moment().format('d');
+            weekEle.innerHTML='星期'+WEEK_NAME[day];
+            console.log('day-->', day,weekEle);
+
+            console.log('233', moment(), moment().format('YYYY.MM.DD'));
+            setInterval(() => {
+                time = moment().format('HH:mm');
+                timeEle.innerHTML = time;
+
+                year = moment().format('YYYY.MM.DD');
+                if (year !== '2022.11.28') {
+                    yearEle.innerHTML = year;
                 }
-            },1000)
+
+                moment().format('d');
+                weekEle.innerHTML='星期'+WEEK_NAME[day];
+            }, 1000)
         }
     </script>
 </body>
